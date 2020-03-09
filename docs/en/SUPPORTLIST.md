@@ -23,3 +23,5 @@
 |  Vultr           | ✓                  |  ✗                       |
 |  eSurfing        | ✓                  |  ✗                       |
 |  renren          | ✓                  |  ✗                       |
+|  w3cshool        | ✓                  |  ✗                       |
+|  fishc           | ✓                  |  ✗                       |
