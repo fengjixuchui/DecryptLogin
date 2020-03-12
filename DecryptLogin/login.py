@@ -8,7 +8,7 @@ Author:
 GitHub:
 	https://github.com/CharlesPikachu
 更新日期:
-	2020-02-25
+	2020-03-10
 '''
 from .platforms import *
 
@@ -62,10 +62,16 @@ class Login():
 		self.eSurfing = eSurfing.eSurfing().login
 		# 人人网
 		self.renren = renren.renren().login
-		# w3cshool
-		self.w3cshool = w3cshool.w3cshool().login
+		# w3cschool
+		self.w3cschool = w3cschool.w3cschool().login
 		# 鱼C论坛
 		self.fishc = fishc.fishc().login
+		# 有道
+		self.youdao = youdao.youdao().login
+		# 百度网盘
+		self.baidupan = baidupan.baidupan().login
+		# stackoverflow
+		self.stackoverflow = stackoverflow.stackoverflow().login
 	'''Info'''
 	def __repr__(self):
 		return self.info
@@ -120,10 +126,16 @@ class Loginer():
 		self.eSurfing = eSurfing.eSurfing
 		# 人人网
 		self.renren = renren.renren
-		# w3cshool
-		self.w3cshool = w3cshool.w3cshool
+		# w3cschool
+		self.w3cschool = w3cschool.w3cschool
 		# 鱼C论坛
 		self.fishc = fishc.fishc
+		# 有道
+		self.youdao = youdao.youdao
+		# 百度网盘
+		self.baidupan = baidupan.baidupan
+		# stackoverflow
+		self.stackoverflow = stackoverflow.stackoverflow
 	'''Info'''
 	def __repr__(self):
 		return self.info

@@ -23,5 +23,8 @@
 |  Vultr           | ✓                  |  ✗                       |
 |  eSurfing        | ✓                  |  ✗                       |
 |  renren          | ✓                  |  ✗                       |
-|  w3cshool        | ✓                  |  ✗                       |
+|  w3cschool       | ✓                  |  ✗                       |
 |  fishc           | ✓                  |  ✗                       |
+|  youdao          | ✓                  |  ✗                       |
+|  baidupan        | ✓                  |  ✗                       |
+|  stackoverflow   | ✓                  |  ✗                       |

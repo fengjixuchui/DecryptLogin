@@ -34,8 +34,11 @@ https://httpsgithubcomcharlespikachudecryptlogin.readthedocs.io/en/latest/
 |  Vultr           | ✓                  |  ✗                       |  Vultr             |
 |  eSurfing        | ✓                  |  ✗                       |  天翼              |
 |  renren          | ✓                  |  ✗                       |  人人网            |
-|  w3cshool        | ✓                  |  ✗                       |  W3Cschool(编程狮) |
+|  w3cschool       | ✓                  |  ✗                       |  W3Cschool(编程狮) |
 |  fishc           | ✓                  |  ✗                       |  鱼C论坛           |
+|  youdao          | ✓                  |  ✗                       |  有道              |
+|  baidupan        | ✓                  |  ✗                       |  百度网盘          |
+|  stackoverflow   | ✓                  |  ✗                       |  stackoverflow     | 
 
 # Some Cases by Using DecryptLogin
 |  Name                       |   Introduction                                                   |   code                                                                                                       |  in Chinese                     |
@@ -47,6 +50,7 @@ https://httpsgithubcomcharlespikachudecryptlogin.readthedocs.io/en/latest/
 |  NeteaseListenLeaderboard   |   [click](https://mp.weixin.qq.com/s/Wlf1a82oACc9N7zGezcy8Q)     |   [click](https://github.com/CharlesPikachu/DecryptLogin/tree/master/examples/NeteaseListenLeaderboard)      |  网易云个人听歌排行榜           |
 |  userWeiboSpider            |   [click](https://mp.weixin.qq.com/s/-3BDTZAE1x7nfCLNq2mFBw)     |   [click](https://github.com/CharlesPikachu/DecryptLogin/tree/master/examples/userWeiboSpider)               |  下载指定微博用户的所有微博数据 |
 |  NeteaseSignin              |   [click](https://mp.weixin.qq.com/s/8d7smUSzW2ds1ypZq-yeFw)     |   [click](https://github.com/CharlesPikachu/DecryptLogin/tree/master/examples/NeteaseSignin)                 |  网易云音乐自动签到             |  
+|  weiboEmoji                 |   [click](https://mp.weixin.qq.com/s/QiPm4gyE8i5amR5gB3IbBA)     |   [click](https://github.com/CharlesPikachu/DecryptLogin/tree/master/examples/weiboEmoji)                    |  微博表情包爬取                 |
 
 # Install
 #### Pip install
@@ -87,8 +91,11 @@ infos_return, session = lg.twitter(username, password, 'pc')
 infos_return, session = lg.vultr(username, password, 'pc')
 infos_return, session = lg.eSurfing(username, password, 'pc')
 infos_return, session = lg.renren(username, password, 'pc')
-infos_return, session = lg.w3cshool(username, password, 'pc')
+infos_return, session = lg.w3cschool(username, password, 'pc')
 infos_return, session = lg.fishc(username, password, 'pc')
+infos_return, session = lg.youdao(username, password, 'pc')
+infos_return, session = lg.baidupan(username, password, 'pc')
+infos_return, session = lg.stackoverflow(username, password, 'pc')
 ```
 
 # Thanks List
