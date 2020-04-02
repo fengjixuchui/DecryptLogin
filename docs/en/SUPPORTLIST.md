@@ -28,3 +28,5 @@
 |  youdao          | ✓                  |  ✗                       |
 |  baidupan        | ✓                  |  ✗                       |
 |  stackoverflow   | ✓                  |  ✗                       |
+|  CodaLab         | ✓                  |  ✗                       |
+|  Pypi            | ✓                  |  ✗                       |

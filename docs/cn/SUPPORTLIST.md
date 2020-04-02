@@ -28,3 +28,5 @@
 |  有道              | ✓                  |  ✗                       |
 |  百度网盘          | ✓                  |  ✗                       |
 |  stackoverflow     | ✓                  |  ✗                       |
+|  CodaLab           | ✓                  |  ✗                       |
+|  Pypi              | ✓                  |  ✗                       |
