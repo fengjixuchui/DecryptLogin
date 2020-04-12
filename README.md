@@ -18,9 +18,9 @@ https://httpsgithubcomcharlespikachudecryptlogin.readthedocs.io/en/latest/
 |  Github          | ✓                  |  ✗                       |  Github            |
 |  Music163        | ✓                  |  ✗                       |  网易云音乐        |
 |  Zt12306         | ✓                  |  ✗                       |  中国铁路12306     |
-|  QQZone          | ✗                  |  ✓                       |  QQ空间            |
-|  QQQun           | ✗                  |  ✓                       |  QQ群              |
-|  QQId			   | ✗                  |  ✓                       |  我的QQ中心        |
+|  QQZone          | ✓                  |  ✗                       |  QQ空间            |
+|  QQQun           | ✓                  |  ✗                       |  QQ群              |
+|  QQId			   | ✓                  |  ✗                       |  我的QQ中心        |
 |  Zhihu		   | ✓                  |  ✗                       |  知乎         	    |
 |  Bilibili		   | ✓                  |  ✓                       |  B站               |
 |  Toutiao		   | ✗                  |  ✓                       |  今日头条          |
@@ -42,6 +42,8 @@ https://httpsgithubcomcharlespikachudecryptlogin.readthedocs.io/en/latest/
 |  CodaLab         | ✓                  |  ✗                       |  CodaLab           |
 |  PyPi            | ✓                  |  ✗                       |  PyPi              | 
 |  Xiami           | ✓                  |  ✗                       |  虾米音乐          |
+|  Douyu           | ✓                  |  ✗                       |  斗鱼直播          |
+|  Migu            | ✓                  |  ✗                       |  咪咕音乐          |
 
 # Some Cases by Using DecryptLogin
 |  Name                       |   Introduction                                                   |   code                                                                                                       |  in Chinese                     |
@@ -55,6 +57,7 @@ https://httpsgithubcomcharlespikachudecryptlogin.readthedocs.io/en/latest/
 |  NeteaseSignin              |   [click](https://mp.weixin.qq.com/s/8d7smUSzW2ds1ypZq-yeFw)     |   [click](https://github.com/CharlesPikachu/DecryptLogin/tree/master/examples/NeteaseSignin)                 |  网易云音乐自动签到             |  
 |  weiboEmoji                 |   [click](https://mp.weixin.qq.com/s/QiPm4gyE8i5amR5gB3IbBA)     |   [click](https://github.com/CharlesPikachu/DecryptLogin/tree/master/examples/weiboEmoji)                    |  微博表情包爬取                 |
 |  weiboSender                |   [click](https://mp.weixin.qq.com/s/_aIY-iVj3xetfHQyMxflkg)     |   [click](https://github.com/CharlesPikachu/DecryptLogin/tree/master/examples/weiboSender)                   |  大吼一声发微博                 |
+|  tbgoods                    |   [click](https://mp.weixin.qq.com/s/NhK9eeWNXv_wPnolccRR-g)     |   [click](https://github.com/CharlesPikachu/DecryptLogin/tree/master/examples/tbgoods)                       |  淘宝商品数据小爬虫             |  
 
 # Install
 #### Pip install
@@ -79,9 +82,9 @@ infos_return, session = lg.github(username[email], password, 'pc')
 infos_return, session = lg.weibo(username[telephone], password, 'mobile')
 infos_return, session = lg.music163(username[telephone/email], password, 'pc')
 infos_return, session = lg.zt12306(username[telephone], password, 'pc')
-infos_return, session = lg.QQZone('mobile')
-infos_return, session = lg.QQQun('mobile')
-infos_return, session = lg.QQId('mobile')
+infos_return, session = lg.QQZone('pc')
+infos_return, session = lg.QQQun('pc')
+infos_return, session = lg.QQId('pc')
 infos_return, session = lg.zhihu(username, password, 'pc')
 infos_return, session = lg.bilibili(username, password, 'pc')
 infos_return, session = lg.toutiao(username, password, 'mobile')
@@ -103,6 +106,8 @@ infos_return, session = lg.stackoverflow(username, password, 'pc')
 infos_return, session = lg.codalab(username, password, 'pc')
 infos_return, session = lg.pypi(username, password, 'pc')
 infos_return, session = lg.xiami(username, password, 'pc')
+infos_return, session = lg.douyu('pc')
+infos_return, session = lg.migu(username, password, 'pc')
 ```
 
 # Thanks List
