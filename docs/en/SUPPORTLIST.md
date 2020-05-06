@@ -33,3 +33,6 @@
 |  Xiami           | ✓                  |  ✗                       |
 |  Douyu           | ✓                  |  ✗                       |
 |  Migu            | ✓                  |  ✗                       |
+|  Qunar           | ✓                  |  ✗                       |
+|  Mieshop         | ✓                  |  ✗                       |
+|  Mpweixin        | ✓                  |  ✗                       |

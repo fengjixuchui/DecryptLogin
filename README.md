@@ -44,6 +44,9 @@ https://httpsgithubcomcharlespikachudecryptlogin.readthedocs.io/en/latest/
 |  Xiami           | ✓                  |  ✗                       |  虾米音乐          |
 |  Douyu           | ✓                  |  ✗                       |  斗鱼直播          |
 |  Migu            | ✓                  |  ✗                       |  咪咕音乐          |
+|  Qunar           | ✓                  |  ✗                       |  去哪儿旅行        |
+|  Mieshop         | ✓                  |  ✗                       |  小米商城          |
+|  Mpweixin        | ✓                  |  ✗                       |  微信公众号        |
 
 # Some Cases by Using DecryptLogin
 |  Name                       |   Introduction                                                   |   code                                                                                                       |  in Chinese                     |
@@ -57,7 +60,8 @@ https://httpsgithubcomcharlespikachudecryptlogin.readthedocs.io/en/latest/
 |  NeteaseSignin              |   [click](https://mp.weixin.qq.com/s/8d7smUSzW2ds1ypZq-yeFw)     |   [click](https://github.com/CharlesPikachu/DecryptLogin/tree/master/examples/NeteaseSignin)                 |  网易云音乐自动签到             |  
 |  weiboEmoji                 |   [click](https://mp.weixin.qq.com/s/QiPm4gyE8i5amR5gB3IbBA)     |   [click](https://github.com/CharlesPikachu/DecryptLogin/tree/master/examples/weiboEmoji)                    |  微博表情包爬取                 |
 |  weiboSender                |   [click](https://mp.weixin.qq.com/s/_aIY-iVj3xetfHQyMxflkg)     |   [click](https://github.com/CharlesPikachu/DecryptLogin/tree/master/examples/weiboSender)                   |  大吼一声发微博                 |
-|  tbgoods                    |   [click](https://mp.weixin.qq.com/s/NhK9eeWNXv_wPnolccRR-g)     |   [click](https://github.com/CharlesPikachu/DecryptLogin/tree/master/examples/tbgoods)                       |  淘宝商品数据小爬虫             |  
+|  tbgoods                    |   [click](https://mp.weixin.qq.com/s/NhK9eeWNXv_wPnolccRR-g)     |   [click](https://github.com/CharlesPikachu/DecryptLogin/tree/master/examples/tbgoods)                       |  淘宝商品数据小爬虫             |
+|  jdgoods                    |   [click](https://mp.weixin.qq.com/s/LXheJveR248ZW4SP5F6fjw)     |   [click](https://github.com/CharlesPikachu/DecryptLogin/tree/master/examples/jdgoods)                       |  京东商品数据小爬虫             |  
 
 # Install
 #### Pip install
@@ -108,6 +112,9 @@ infos_return, session = lg.pypi(username, password, 'pc')
 infos_return, session = lg.xiami(username, password, 'pc')
 infos_return, session = lg.douyu('pc')
 infos_return, session = lg.migu(username, password, 'pc')
+infos_return, session = lg.qunar(username, password, 'pc')
+infos_return, session = lg.mieshop(username, password, 'pc')
+infos_return, session = lg.mpweixin(username, password, 'pc')
 ```
 
 # Thanks List
