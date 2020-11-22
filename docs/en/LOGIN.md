@@ -9,581 +9,681 @@ from DecryptLogin import login
 
 # the instanced Login class object
 lg = login.Login()
-# use the provided api function to login in the target website (e.g. twitter)
+# use the provided api function to login in the target website (e.g., twitter)
 infos_return, session = lg.twitter(username='Your Username', password='Your Password')
 ```
 All the api functions for logining in the corresponding websites support the following arguments:
 ```
 username: the username for login in the target website
 password: the password for login in the target website
-mode: pc/mobile, using the default setting is recommended
-crackvcFunc: a user-defined captcha identification function, the input of this function is the image path of captcha and it should return the recognition result of captcha
+mode: pc/mobile/scanqr, using the default setting is recommended
+crack_captcha_func: a user-defined captcha identification function, the input of this function is the image path of captcha and it should return the recognition result of captcha
 proxies: use proxies during the simulated login, the supported formats of proxies is the same as https://requests.readthedocs.io/en/master/user/advanced/#proxies
 ```
 
 
 ## Loginer class
-The DecryptLogin library also supports returning the instantiated simulated login class of the corresponding website before implementing the simulated login. 
+The DecryptLogin library also supports returning the instanced simulated login class of the corresponding website before implementing the simulated login. 
 Specifically, the code could be implemented as follows:
 ```python
 from DecryptLogin import login
 
 # the instanced Loginer class object
 loginer = login.Loginer()
-# obtain the simulated login class of the corresponding website (e.g. twitter)
+# obtain the instanced simulated login class of the corresponding website (e.g., twitter)
 twitter_loginer = loginer.twitter()
 # call login function to achieve simulated login
 infos_return, session = twitter_loginer.login(username='Your Username', password='Your Password')
 ```
-The arguments supported by the login function are the same as those used to implement simulated login support using the Login class object.
-The advantage of this scheme is that it is easier to call other useful functions in this class in order to achieve functions other than simulated login.
+All the loginer.login functions for logining in the corresponding websites support the following arguments:
+```
+username: the username for login in the target website
+password: the password for login in the target website
+mode: pc/mobile/scanqr, using the default setting is recommended
+crack_captcha_func: a user-defined captcha identification function, the input of this function is the image path of captcha and it should return the recognition result of captcha
+proxies: use proxies during the simulated login, the supported formats of proxies is the same as https://requests.readthedocs.io/en/master/user/advanced/#proxies
+```
 
 
 ## Introduction of supported websites
 
 ### Weibo
-#### Supported modes
-The supported modes of Weibo include:
-- mobile
-- pc
-#### Example
-Here is an example to login in Weibo:
+#### PC Mode
+The sample code is as following:
 ```python
 from DecryptLogin import login
+
 lg = login.Login()
-# pc
-infos_return, session = lg.weibo(username[telephone], password, 'pc')
-# mobile
-infos_return, session = lg.weibo(username[telephone], password, 'mobile')
+infos_return, session = lg.weibo(username, password, 'pc')
 ```
-#### The returned values in crackvcFunc
-- mobile: unsupport processing the situation of appearing captcha
-- pc: it is a digital captcha, just return the corresponding digital recognition result
+Support the user-defined crack_captcha_func to identify the digital/letter captcha automatically, for example:
+```python
+def cracker(imagepath):
+    return 'LOVE'
+```
+#### Mobile Mode
+The sample code is as following:
+```python
+from DecryptLogin import login
+
+lg = login.Login()
+infos_return, session = lg.weibo(username, password, 'mobile')
+```
+Unsupport the user-defined crack_captcha_func.
+#### Scanqr Mode
+The sample code is as following:
+```python
+from DecryptLogin import login
+
+lg = login.Login()
+infos_return, session = lg.weibo('', '', 'scanqr')
+```
+Unsupport the user-defined crack_captcha_func.
 
 ### Douban
-#### Supported modes
-The supported modes of Douban include:
-- pc
-#### Example
-Here is an example to login in Douban:
+#### PC Mode
+The sample code is as following:
 ```python
 from DecryptLogin import login
+
 lg = login.Login()
-infos_return, session = lg.douban(username[telephone], password, 'pc')
+infos_return, session = lg.douban(username, password, 'pc')
 ```
-#### The returned values in crackvcFunc
-- mobile: unsupport processing the situation of appearing captcha
-- pc: unsupport processing the situation of appearing captcha
+Unsupport the user-defined crack_captcha_func.
+#### Mobile Mode
+This mode is temporarily not supported.
+#### Scanqr Mode
+This mode is temporarily not supported.
 
 ### Github
-#### Supported modes
-The supported modes of Github include:
-- pc
-#### Example
-Here is an example to login in Github:
+#### PC Mode
+The sample code is as following:
 ```python
 from DecryptLogin import login
+
 lg = login.Login()
-infos_return, session = lg.github(username[email], password, 'pc')
+infos_return, session = lg.github(username, password, 'pc')
 ```
-#### The returned values in crackvcFunc
-- mobile: unsupport processing the situation of appearing captcha
-- pc: unsupport processing the situation of appearing captcha
+Unsupport the user-defined crack_captcha_func.
+#### Mobile Mode
+This mode is temporarily not supported.
+#### Scanqr Mode
+This mode is temporarily not supported.
 
 ### Music163
-#### Supported modes
-The supported modes of Music163 include:
-- pc
-#### Example
-Here is an example to login in Music163:
+#### PC Mode
+The sample code is as following:
 ```python
 from DecryptLogin import login
+
 lg = login.Login()
-infos_return, session = lg.music163(username[telephone/email], password, 'pc')
+infos_return, session = lg.music163(username, password, 'pc')
 ```
-#### The returned values in crackvcFunc
-- mobile: unsupport processing the situation of appearing captcha
-- pc: unsupport processing the situation of appearing captcha
+Unsupport the user-defined crack_captcha_func.
+#### Mobile Mode
+This mode is temporarily not supported.
+#### Scanqr Mode
+This mode is temporarily not supported.
 
 ### Zt12306
-#### Supported modes
-The supported modes of Zt12306 include:
-- pc
-#### Example
-Here is an example to login in Zt12306:
+#### PC Mode
+The sample code is as following:
 ```python
 from DecryptLogin import login
+
 lg = login.Login()
-infos_return, session = lg.zt12306(username[telephone], password, 'pc')
+infos_return, session = lg.zt12306(username, password, 'pc')
 ```
-#### The returned values in crackvcFunc
-- mobile: unsupport processing the situation of appearing captcha
-- pc: pc: it is a click captcha, just return the index of target images (e.g., return '1,6' means the target images are in <the first row, the first column> and <the second row, the second column>)
+Support the user-defined crack_captcha_func to identify the click captcha automatically, 
+for example (return '1,6' means the image need to be selected is in [the first row, the first column] and [the second row, the second column]):
+```python
+def cracker(imagepath):
+    return '1,6'
+```
+#### Mobile Mode
+This mode is temporarily not supported.
+#### Scanqr Mode
+This mode is temporarily not supported.
 
 ### QQZone
-#### Supported modes
-The supported modes of QQZone include:
-- pc
-#### Example
-Here is an example to login in QQZone:
+#### PC Mode
+This mode is temporarily not supported.
+#### Mobile Mode
+This mode is temporarily not supported.
+#### Scanqr Mode
+The sample code is as following:
 ```python
 from DecryptLogin import login
+
 lg = login.Login()
-# scan the qr code to login in QQZone
-infos_return, session = lg.QQZone('pc')
+infos_return, session = lg.QQZone('', '', 'scanqr')
 ```
-#### The returned values in crackvcFunc
-- mobile: unsupport processing the situation of appearing captcha
-- pc: unsupport processing the situation of appearing captcha
+Unsupport the user-defined crack_captcha_func.
 
 ### QQQun
-#### Supported modes
-The supported modes of QQQun include:
-- pc
-#### Example
-Here is an example to login in QQQun:
+#### PC Mode
+This mode is temporarily not supported.
+#### Mobile Mode
+This mode is temporarily not supported.
+#### Scanqr Mode
+The sample code is as following:
 ```python
 from DecryptLogin import login
+
 lg = login.Login()
-# scan the qr code to login in QQQun
-infos_return, session = lg.QQQun('pc')
+infos_return, session = lg.QQQun('', '', 'scanqr')
 ```
-#### The returned values in crackvcFunc
-- mobile: unsupport processing the situation of appearing captcha
-- pc: unsupport processing the situation of appearing captcha
+Unsupport the user-defined crack_captcha_func.
 
 ### QQId
-#### Supported modes
-The supported modes of QQId include:
-- pc
-#### Example
-Here is an example to login in QQId:
+#### PC Mode
+This mode is temporarily not supported.
+#### Mobile Mode
+This mode is temporarily not supported.
+#### Scanqr Mode
+The sample code is as following:
 ```python
 from DecryptLogin import login
+
 lg = login.Login()
-# scan the qr code to login in QQId
-infos_return, session = lg.QQId('pc')
+infos_return, session = lg.QQId('', '', 'scanqr')
 ```
-#### The returned values in crackvcFunc
-- mobile: unsupport processing the situation of appearing captcha
-- pc: unsupport processing the situation of appearing captcha
+Unsupport the user-defined crack_captcha_func.
 
 ### Zhihu
-#### Supported modes
-The supported modes of Zhihu include:
-- pc
-#### Example
-Here is an example to login in Zhihu:
+#### PC Mode
+The sample code is as following:
 ```python
 from DecryptLogin import login
+
 lg = login.Login()
 infos_return, session = lg.zhihu(username, password, 'pc')
 ```
-#### The returned values in crackvcFunc
-- mobile: unsupport processing the situation of appearing captcha
-- pc: it is a digital captcha, just return the corresponding digital recognition result
+Support the user-defined crack_captcha_func to identify the digital/letter captcha automatically, for example:
+```python
+def cracker(imagepath):
+    return 'LOVE'
+```
+Noted that, email is recommended as the input of username.
+#### Mobile Mode
+This mode is temporarily not supported.
+#### Scanqr Mode
+The sample code is as following:
+```python
+from DecryptLogin import login
+
+lg = login.Login()
+infos_return, session = lg.zhihu('', '', 'scanqr')
+```
+Unsupport the user-defined crack_captcha_func.
 
 ### Bilibili
-#### Supported modes
-The supported modes of Bilibili include:
-- mobile
-- pc
-#### Example
-Here is an example to login in Bilibili:
+#### PC Mode
+The sample code is as following:
 ```python
 from DecryptLogin import login
+
 lg = login.Login()
-# pc
 infos_return, session = lg.bilibili(username, password, 'pc')
-# mobile
+```
+Unsupport the user-defined crack_captcha_func, we use the recognition api from https://github.com/Hsury/Bilibili-Toolkit.
+#### Mobile Mode
+The sample code is as following:
+```python
+from DecryptLogin import login
+
+lg = login.Login()
 infos_return, session = lg.bilibili(username, password, 'mobile')
 ```
-#### The returned values in crackvcFunc
-- mobile: unsupport processing the situation of appearing captcha, use the recognition api from https://github.com/Hsury/Bilibili-Toolkit
-- pc: unsupport processing the situation of appearing captcha, use the recognition api from https://github.com/Hsury/Bilibili-Toolkit
+Unsupport the user-defined crack_captcha_func, we use the recognition api from https://github.com/Hsury/Bilibili-Toolkit.
+#### Scanqr Mode
+This mode is temporarily not supported.
 
 ### Toutiao
-#### Supported modes
-The supported modes of Toutiao include:
-- mobile
-#### Example
-Here is an example to login in Toutiao:
-```python
-from DecryptLogin import login
-lg = login.Login()
-infos_return, session = lg.toutiao(username, password, 'mobile')
-```
-#### The returned values in crackvcFunc
-- mobile: it is a digital captcha, just return the corresponding digital recognition result
-- pc: unsupport processing the situation of appearing captcha
+#### PC Mode
+This mode is temporarily not supported.
+#### Mobile Mode
+This mode is temporarily not supported.
+#### Scanqr Mode
+This mode is temporarily not supported.
 
 ### Taobao
-#### Supported modes
-The supported modes of Taobao include:
-- pc
-#### Example
-Here is an example to login in Taobao:
+#### PC Mode
+This mode is temporarily not supported.
+#### Mobile Mode
+This mode is temporarily not supported.
+#### Scanqr Mode
+The sample code is as following:
 ```python
 from DecryptLogin import login
+
 lg = login.Login()
-# scan the qr code to login in taobao
-infos_return, session = lg.taobao('pc')
+infos_return, session = lg.taobao('', '', 'scanqr')
 ```
-#### The returned values in crackvcFunc
-- mobile: unsupport processing the situation of appearing captcha
-- pc: unsupport processing the situation of appearing captcha
+Unsupport the user-defined crack_captcha_func.
 
 ### Jingdong
-#### Supported modes
-The supported modes of Jingdong include:
-- pc
-#### Example
-Here is an example to login in Jingdong:
+#### PC Mode
+This mode is temporarily not supported.
+#### Mobile Mode
+This mode is temporarily not supported.
+#### Scanqr Mode
+The sample code is as following:
 ```python
 from DecryptLogin import login
+
 lg = login.Login()
-# scan the qr code to login in jingdong
-infos_return, session = lg.jingdong('pc')
+infos_return, session = lg.jingdong('', '', 'scanqr')
 ```
-#### The returned values in crackvcFunc
-- mobile: unsupport processing the situation of appearing captcha
-- pc: unsupport processing the situation of appearing captcha
+Unsupport the user-defined crack_captcha_func.
 
 ### Ifeng
-#### Supported modes
-The supported modes of Ifeng include:
-- pc
-#### Example
-Here is an example to login in Ifeng:
+#### PC Mode
+The sample code is as following:
 ```python
 from DecryptLogin import login
+
 lg = login.Login()
 infos_return, session = lg.ifeng(username, password, 'pc')
 ```
-#### The returned values in crackvcFunc
-- mobile: unsupport processing the situation of appearing captcha
-- pc: it is a digital captcha, just return the corresponding digital recognition result
+Support the user-defined crack_captcha_func to identify the digital/letter captcha automatically, for example:
+```python
+def cracker(imagepath):
+    return 'LOVE'
+```
+#### Mobile Mode
+This mode is temporarily not supported.
+#### Scanqr Mode
+This mode is temporarily not supported.
 
 ### Sohu
-#### Supported modes
-The supported modes of Sohu include:
-- mobile
-- pc
-#### Example
-Here is an example to login in Sohu:
+#### PC Mode
+This mode is temporarily not supported.
+#### Mobile Mode
+The sample code is as following:
 ```python
 from DecryptLogin import login
+
 lg = login.Login()
-# pc
-infos_return, session = lg.sohu(username, password, 'pc')
-# mobile
 infos_return, session = lg.sohu(username, password, 'mobile')
 ```
-#### The returned values in crackvcFunc
-- mobile: unsupport processing the situation of appearing captcha
-- pc: unsupport processing the situation of appearing captcha
+Unsupport the user-defined crack_captcha_func.
+#### Scanqr Mode
+This mode is temporarily not supported.
 
 ### Zgconline
-#### Supported modes
-The supported modes of Zgconline include:
-- pc
-#### Example
-Here is an example to login in Zgconline:
+#### PC Mode
+The sample code is as following:
 ```python
 from DecryptLogin import login
+
 lg = login.Login()
 infos_return, session = lg.zgconline(username, password, 'pc')
 ```
-#### The returned values in crackvcFunc
-- mobile: unsupport processing the situation of appearing captcha
-- pc: unsupport processing the situation of appearing captcha
+Unsupport the user-defined crack_captcha_func.
+#### Mobile Mode
+This mode is temporarily not supported.
+#### Scanqr Mode
+This mode is temporarily not supported.
 
 ### Lagou
-#### Supported modes
-The supported modes of Lagou include:
-- pc
-#### Example
-Here is an example to login in Lagou:
-```python
-from DecryptLogin import login
-lg = login.Login()
-infos_return, session = lg.lagou(username, password, 'pc')
-```
-#### The returned values in crackvcFunc
-- mobile: unsupport processing the situation of appearing captcha
-- pc: it is a digital captcha, just return the corresponding digital recognition result
+#### PC Mode
+This mode is temporarily not supported.
+#### Mobile Mode
+This mode is temporarily not supported.
+#### Scanqr Mode
+This mode is temporarily not supported.
 
 ### Twitter
-#### Supported modes
-The supported modes of Twitter include:
-- pc
-#### Example
-Here is an example to login in Twitter:
+#### PC Mode
+The sample code is as following:
 ```python
 from DecryptLogin import login
+
 lg = login.Login()
 infos_return, session = lg.twitter(username, password, 'pc')
 ```
-#### The returned values in crackvcFunc
-- mobile: unsupport processing the situation of appearing captcha
-- pc: unsupport processing the situation of appearing captcha
+Unsupport the user-defined crack_captcha_func.
+#### Mobile Mode
+This mode is temporarily not supported.
+#### Scanqr Mode
+This mode is temporarily not supported.
 
 ### Vultr
-#### Supported modes
-The supported modes of Vultr include:
-- pc
-#### Example
-Here is an example to login in Vultr:
+#### PC Mode
+The sample code is as following:
 ```python
 from DecryptLogin import login
+
 lg = login.Login()
 infos_return, session = lg.vultr(username, password, 'pc')
 ```
-#### The returned values in crackvcFunc
-- mobile: unsupport processing the situation of appearing captcha
-- pc: unsupport processing the situation of appearing captcha
+Support the user-defined crack_captcha_func to identify the digital/letter captcha automatically, for example:
+```python
+def cracker(imagepath):
+    return 'LOVE'
+```
+Noted that Vultr will adopt the google's click captcha when your network could access google. However, crack_captcha_func only support crack the digital/letter captcha.
+#### Mobile Mode
+This mode is temporarily not supported.
+#### Scanqr Mode
+This mode is temporarily not supported.
 
 ### eSurfing
-#### Supported modes
-The supported modes of eSurfing include:
-- pc
-#### Example
-Here is an example to login in eSurfing:
+#### PC Mode
+The sample code is as following:
 ```python
 from DecryptLogin import login
+
 lg = login.Login()
 infos_return, session = lg.eSurfing(username, password, 'pc')
 ```
-#### The returned values in crackvcFunc
-- mobile: unsupport processing the situation of appearing captcha
-- pc: unsupport processing the situation of appearing captcha
+Unsupport the user-defined crack_captcha_func.
+#### Mobile Mode
+This mode is temporarily not supported.
+#### Scanqr Mode
+This mode is temporarily not supported.
 
 ### Renren
-#### Supported modes
-The supported modes of Renren include:
-- pc
-#### Example
-Here is an example to login in Renren:
+#### PC Mode
+The sample code is as following:
 ```python
 from DecryptLogin import login
+
 lg = login.Login()
 infos_return, session = lg.renren(username, password, 'pc')
 ```
-#### The returned values in crackvcFunc
-- mobile: unsupport processing the situation of appearing captcha
-- pc: it is a digital captcha, just return the corresponding digital recognition result
+Support the user-defined crack_captcha_func to identify the digital/letter captcha automatically, for example:
+```python
+def cracker(imagepath):
+    return 'LOVE'
+```
+#### Mobile Mode
+This mode is temporarily not supported.
+#### Scanqr Mode
+This mode is temporarily not supported.
 
 ### W3Cschool
-#### Supported modes
-The supported modes of W3Cschool include:
-- pc
-#### Example
-Here is an example to login in W3Cschool:
+#### PC Mode
+The sample code is as following:
 ```python
 from DecryptLogin import login
+
 lg = login.Login()
 infos_return, session = lg.w3cschool(username, password, 'pc')
 ```
-#### The returned values in crackvcFunc
-- mobile: unsupport processing the situation of appearing captcha
-- pc: unsupport processing the situation of appearing captcha
+Unsupport the user-defined crack_captcha_func.
+#### Mobile Mode
+This mode is temporarily not supported.
+#### Scanqr Mode
+This mode is temporarily not supported.
 
 ### Fishc
-#### Supported modes
-The supported modes of Fishc include:
-- pc
-#### Example
-Here is an example to login in Fishc:
+#### PC Mode
+The sample code is as following:
 ```python
 from DecryptLogin import login
+
 lg = login.Login()
 infos_return, session = lg.fishc(username, password, 'pc')
 ```
-#### The returned values in crackvcFunc
-- mobile: unsupport processing the situation of appearing captcha
-- pc: unsupport processing the situation of appearing captcha
+Unsupport the user-defined crack_captcha_func.
+#### Mobile Mode
+This mode is temporarily not supported.
+#### Scanqr Mode
+This mode is temporarily not supported.
 
 ### Youdao
-#### Supported modes
-The supported modes of Youdao include:
-- pc
-#### Example
-Here is an example to login in Youdao:
+#### PC Mode
+The sample code is as following:
 ```python
 from DecryptLogin import login
+
 lg = login.Login()
 infos_return, session = lg.youdao(username, password, 'pc')
 ```
-#### The returned values in crackvcFunc
-- mobile: unsupport processing the situation of appearing captcha
-- pc: unsupport processing the situation of appearing captcha
+Unsupport the user-defined crack_captcha_func.
+#### Mobile Mode
+This mode is temporarily not supported.
+#### Scanqr Mode
+This mode is temporarily not supported.
 
 ### Baidupan
-#### Supported modes
-The supported modes of Baidupan include:
-- pc
-#### Example
-Here is an example to login in Baidupan:
+#### PC Mode
+The sample code is as following:
 ```python
 from DecryptLogin import login
+
 lg = login.Login()
 infos_return, session = lg.baidupan(username, password, 'pc')
 ```
-#### The returned values in crackvcFunc
-- mobile: unsupport processing the situation of appearing captcha
-- pc: it is a digital captcha, just return the corresponding digital recognition result
+Support the user-defined crack_captcha_func to identify the digital/letter captcha automatically, for example:
+```python
+def cracker(imagepath):
+    return 'LOVE'
+```
+#### Mobile Mode
+This mode is temporarily not supported.
+#### Scanqr Mode
+This mode is temporarily not supported.
 
 ### Stackoverflow
-#### Supported modes
-The supported modes of Stackoverflow include:
-- pc
-#### Example
-Here is an example to login in Stackoverflow:
+#### PC Mode
+The sample code is as following:
 ```python
 from DecryptLogin import login
+
 lg = login.Login()
 infos_return, session = lg.stackoverflow(username, password, 'pc')
 ```
-#### The returned values in crackvcFunc
-- mobile: unsupport processing the situation of appearing captcha
-- pc: unsupport processing the situation of appearing captcha
+Unsupport the user-defined crack_captcha_func.
+#### Mobile Mode
+This mode is temporarily not supported.
+#### Scanqr Mode
+This mode is temporarily not supported.
 
 ### CodaLab
-#### Supported modes
-The supported modes of CodaLab include:
-- pc
-#### Example
-Here is an example to login in CodaLab:
+#### PC Mode
+The sample code is as following:
 ```python
 from DecryptLogin import login
+
 lg = login.Login()
 infos_return, session = lg.codalab(username, password, 'pc')
 ```
-#### The returned values in crackvcFunc
-- mobile: unsupport processing the situation of appearing captcha
-- pc: unsupport processing the situation of appearing captcha
+Unsupport the user-defined crack_captcha_func.
+#### Mobile Mode
+This mode is temporarily not supported.
+#### Scanqr Mode
+This mode is temporarily not supported.
 
 ### PyPi
-#### Supported modes
-The supported modes of PyPi include:
-- pc
-#### Example
-Here is an example to login in PyPi:
+#### PC Mode
+The sample code is as following:
 ```python
 from DecryptLogin import login
+
 lg = login.Login()
 infos_return, session = lg.pypi(username, password, 'pc')
 ```
-#### The returned values in crackvcFunc
-- mobile: unsupport processing the situation of appearing captcha
-- pc: unsupport processing the situation of appearing captcha
+Unsupport the user-defined crack_captcha_func.
+#### Mobile Mode
+This mode is temporarily not supported.
+#### Scanqr Mode
+This mode is temporarily not supported.
 
 ### Xiami
-#### Supported modes
-The supported modes of Xiami include:
-- pc
-#### Example
-Here is an example to login in Xiami:
+#### PC Mode
+The sample code is as following:
 ```python
 from DecryptLogin import login
+
 lg = login.Login()
 infos_return, session = lg.xiami(username, password, 'pc')
 ```
-#### The returned values in crackvcFunc
-- mobile: unsupport processing the situation of appearing captcha
-- pc: unsupport processing the situation of appearing captcha
+Unsupport the user-defined crack_captcha_func.
+#### Mobile Mode
+This mode is temporarily not supported.
+#### Scanqr Mode
+This mode is temporarily not supported.
 
 ### Douyu
-#### Supported modes
-The supported modes of Douyu include:
-- pc
-#### Example
-Here is an example to login in Douyu:
+#### PC Mode
+This mode is temporarily not supported.
+#### Mobile Mode
+This mode is temporarily not supported.
+#### Scanqr Mode
+The sample code is as following:
 ```python
 from DecryptLogin import login
+
 lg = login.Login()
-# scan the qr code to login in Douyu
-infos_return, session = lg.douyu('pc')
+infos_return, session = lg.douyu('', '', 'scanqr')
 ```
-#### The returned values in crackvcFunc
-- mobile: unsupport processing the situation of appearing captcha
-- pc: unsupport processing the situation of appearing captcha
+Unsupport the user-defined crack_captcha_func.
 
 ### Migu
-#### Supported modes
-The supported modes of Migu include:
-- pc
-#### Example
-Here is an example to login in Migu:
+#### PC Mode
+The sample code is as following:
 ```python
 from DecryptLogin import login
+
 lg = login.Login()
 infos_return, session = lg.migu(username, password, 'pc')
 ```
-#### The returned values in crackvcFunc
-- mobile: unsupport processing the situation of appearing captcha
-- pc: unsupport processing the situation of appearing captcha
+Unsupport the user-defined crack_captcha_func.
+#### Mobile Mode
+This mode is temporarily not supported.
+#### Scanqr Mode
+This mode is temporarily not supported.
 
 ### Qunar
-#### Supported modes
-The supported modes of Qunar include:
-- pc
-#### Example
-Here is an example to login in Qunar:
+#### PC Mode
+The sample code is as following:
 ```python
 from DecryptLogin import login
+
 lg = login.Login()
 infos_return, session = lg.qunar(username, password, 'pc')
 ```
-#### The returned values in crackvcFunc
-- mobile: unsupport processing the situation of appearing captcha
-- pc: it is a digital captcha, just return the corresponding digital recognition result
+Support the user-defined crack_captcha_func to identify the digital/letter captcha automatically, for example:
+```python
+def cracker(imagepath):
+    return 'LOVE'
+```
+#### Mobile Mode
+This mode is temporarily not supported.
+#### Scanqr Mode
+This mode is temporarily not supported.
 
 ### Mieshop
-#### Supported modes
-The supported modes of Mieshop include:
-- pc
-#### Example
-Here is an example to login in Mieshop:
+#### PC Mode
+The sample code is as following:
 ```python
 from DecryptLogin import login
+
 lg = login.Login()
 infos_return, session = lg.mieshop(username, password, 'pc')
 ```
-#### The returned values in crackvcFunc
-- mobile: unsupport processing the situation of appearing captcha
-- pc: unsupport processing the situation of appearing captcha
+Unsupport the user-defined crack_captcha_func.
+#### Mobile Mode
+This mode is temporarily not supported.
+#### Scanqr Mode
+This mode is temporarily not supported.
 
 ### Mpweixin
-#### Supported modes
-The supported modes of Mpweixin include:
-- pc
-#### Example
-Here is an example to login in Mpweixin:
+#### PC Mode
+The sample code is as following:
 ```python
 from DecryptLogin import login
+
 lg = login.Login()
 infos_return, session = lg.mpweixin(username, password, 'pc')
 ```
-#### The returned values in crackvcFunc
-- mobile: unsupport processing the situation of appearing captcha
-- pc: unsupport processing the situation of appearing captcha
+Unsupport the user-defined crack_captcha_func.
+#### Mobile Mode
+This mode is temporarily not supported.
+#### Scanqr Mode
+This mode is temporarily not supported.
 
 ### Baidutieba
-#### Supported modes
-The supported modes of Baidutieba include:
-- pc
-#### Example
-Here is an example to login in Baidutieba:
+#### PC Mode
+This mode is temporarily not supported.
+#### Mobile Mode
+This mode is temporarily not supported.
+#### Scanqr Mode
+The sample code is as following:
 ```python
 from DecryptLogin import login
+
 lg = login.Login()
-# scan the qr code to login in Baidutieba
-infos_return, session = lg.baidutieba('pc')
+infos_return, session = lg.baidutieba('', '', 'scanqr')
 ```
-#### The returned values in crackvcFunc
-- mobile: unsupport processing the situation of appearing captcha
-- pc: unsupport processing the situation of appearing captcha
+Unsupport the user-defined crack_captcha_func.
+
+### Dazhongdianping
+#### PC Mode
+This mode is temporarily not supported.
+#### Mobile Mode
+This mode is temporarily not supported.
+#### Scanqr Mode
+The sample code is as following:
+```python
+from DecryptLogin import login
+
+lg = login.Login()
+infos_return, session = lg.dazhongdianping('', '', 'scanqr')
+```
+Unsupport the user-defined crack_captcha_func.
+
+### Jianguoyun
+#### PC Mode
+The sample code is as following:
+```python
+from DecryptLogin import login
+
+lg = login.Login()
+infos_return, session = lg.jianguoyun(username, password, 'pc')
+```
+Unsupport the user-defined crack_captcha_func.
+#### Mobile Mode
+This mode is temporarily not supported.
+#### Scanqr Mode
+This mode is temporarily not supported.
+
+### Cloud189
+#### PC Mode
+The sample code is as following:
+```python
+from DecryptLogin import login
+
+lg = login.Login()
+infos_return, session = lg.cloud189(username, password, 'pc')
+```
+Support the user-defined crack_captcha_func to identify the digital/letter captcha automatically, for example:
+```python
+def cracker(imagepath):
+    return 'LOVE'
+```
+#### Mobile Mode
+This mode is temporarily not supported.
+#### Scanqr Mode
+This mode is temporarily not supported.
+
+### QQMusic
+#### PC Mode
+This mode is temporarily not supported.
+#### Mobile Mode
+This mode is temporarily not supported.
+#### Scanqr Mode
+The sample code is as following:
+```python
+from DecryptLogin import login
+
+lg = login.Login()
+infos_return, session = lg.qqmusic('', '', 'scanqr')
+```
+Unsupport the user-defined crack_captcha_func.
 
 
 ## Util functions
